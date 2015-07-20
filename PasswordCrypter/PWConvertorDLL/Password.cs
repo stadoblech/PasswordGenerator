@@ -87,10 +87,29 @@ namespace PWConvertorDLL
             this.useSpecificCharacters = useSpecific;
         }
 
-        private int getId()
+        public decimal getHash(string word) /// private
         {
+            decimal value = 0;
+            int fakeCharIndex = 5;
+            int wordLenght;
 
-            return 0;
+            wordLenght = word.Length;
+            if (word.Length < 5)
+                wordLenght = 5;
+            else if (word.Length > 25)
+                wordLenght = 25;
+            foreach(char c in word)
+            {
+                fakeCharIndex++;
+                if (fakeCharIndex > 32)
+                {
+                    fakeCharIndex = 32;
+                }
+                decimal n = c;
+                value += (n * fakeCharIndex) + wordLenght;
+            }
+
+            return value;
         }
     }
 }
